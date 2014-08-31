@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
 def bubble_sort(nums):
-    length = len(nums)
-    for _ in range(length-1,0,-1):
+    # Number of passes
+    for _ in range(len(nums)-1,0,-1):
         for j in range(_):
-            if j == length-1:
-                break
             if nums[j] > nums[j+1]:
                 nums[j],nums[j+1] = nums[j+1],nums[j]
         print nums
@@ -48,11 +46,44 @@ def merge_sort(nums):
             k += 1
 
     print "Merging",nums
+    return nums
 
+def quick_sort(nums):
+    _quick_sort(nums, 0, len(nums)-1)
 
+def _quick_sort(nums, first, last):
+    if first < last:
+        splitpoint = partition(nums, first, last)
+
+        _quick_sort(nums, first, splitpoint-1)
+        _quick_sort(nums, splitpoint+1, last)
+
+def partition(nums, first, last):
+    pivotval = nums[first]
+    lmark = first+1
+    rmark = last
+
+    done = False
+    while not done:
+        while lmark <= rmark and nums[lmark] <= pivotval:
+            lmark += 1
+
+        while rmark >= lmark and nums[rmark] >= pivotval:
+            rmark -= 1
+
+        if rmark < lmark:
+            done = True
+        else:
+            nums[lmark],nums[rmark] = nums[rmark],nums[lmark]
+
+    nums[first],nums[rmark] = nums[rmark],nums[first]
+    return rmark
+    
 nums = [9,3,1,10,23,1,0]
 print(nums)
-print "Bubble Sort:"
-print(bubble_sort(nums))
-print "Merge Sort:"
-print(merge_sort(nums))
+#print "Bubble Sort:"
+#print(bubble_sort(nums))
+#print "Merge Sort:"
+#print(merge_sort(nums))
+quick_sort(nums)
+print(nums)

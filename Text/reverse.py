@@ -1,10 +1,10 @@
 
 def reverse(a):
-    b = ""
+    b = [] 
     for i in range(len(a)-1,-1,-1):
-        b += a[i]
+        b.append(a[i])
 
-    return b
+    return ''.join(b)
 
 a = "rolling"
 b = a[::-1]
