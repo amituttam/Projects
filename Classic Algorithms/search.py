@@ -7,6 +7,7 @@ def seq_search(alist, x):
 
     return False
 
+# Works only if list is already sorted
 def binary_search(alist, x):
     if len(alist) == 0:
         return False
